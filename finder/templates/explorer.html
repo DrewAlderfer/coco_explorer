@@ -1,0 +1,20 @@
+<div id="explorer">
+    <div id=c_panel>
+        <div id="search_bar">
+            <form id="search" method="POST" action="/explorer">
+                <input type="text" class="text_input" name="categories" placeholder="Categories">
+                <input type="text" class="text_input" name="caption_search" placeholder="Caption Search">
+                <input type="submit" name="search" value="Search!">
+            </form>
+        </div>
+        <div id="preview">
+        </div>
+    </div>
+    <div id="result_list">
+    {% if results %}
+        <h3>Results</h3>
+        {{ results | safe }}
+
+    {% endif %}
+    </div>
+</div>
