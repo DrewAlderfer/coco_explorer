@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import polars as pb
 from PIL import Image
-from finder.tools import group_anns, COCO_Image_Search
+from finder.tools import group_anns, COCO_Image_Search, Record
 
 
 # %%
@@ -104,3 +104,7 @@ print(f"{images.cursor * images.batch_size} of {images.units} images")
 # %%
 for i in range(100):
     print(i)
+
+# %%
+days = Record()
+days.days

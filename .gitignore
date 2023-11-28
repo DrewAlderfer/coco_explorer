@@ -10,6 +10,8 @@ job_data.json
 */job_data.json
 *.log
 */*.log
+finder/static/data/*
+finder/static/data
 
 
 ### Flask ###

@@ -22,6 +22,12 @@ def group_anns(anns, ann_param:str="caption"):
     return ann_groups
 
 class Search_Result(list):
+    """ 
+    Class for the search results object:
+        This looks like it is basically a list with some custom functionality
+        to interact with the web app. It takes a search result and batches it
+        according to the `batch_size` parameter.
+    """
     def __init__(self, results, batch_size:int=12):
         self.results = results
         self.batch_size = batch_size
@@ -75,6 +81,14 @@ class Search_Result(list):
             raise StopIteration
 
 class COCO_Image_Search():
+    """
+    This is the class object that loads the coco annotations and then provides
+    methods for searching them and returning the images that match the search
+    parameters.
+
+    It looks like I have it setup to store the results of the search as the
+    `Search_Result` class defined above.
+    """
     def __init__(self,
                  data_dir= './finder/static/data',
                  ann_file = '/annotations/instances_train2017.json',
@@ -94,13 +108,24 @@ class COCO_Image_Search():
         raise Exception("No search results to return!") from ValueError
 
     def cat_search(self, cats:list=['person', 'dog']) -> Self:
+        """
+        A class method to retrieve image ids associated with a list of COCO
+        categories.
 
+        It's basically a wrapper for the coco tools.
+
+        returns itself
+        """
         catIds = self.coco.getCatIds(catNms=cats)
         self.img_ids = self.coco.getImgIds(catIds=catIds)
         self.imgs = self.coco.loadImgs(self.img_ids)
         return self
-        
+
     def caption_contains(self, terms:list[str]) -> Self:
+        """
+        A class method that uses polars to search image captions and returns a
+        `Search_Result` object containing the image ids that match the search.
+        """
         capIds = self.coco_caps.getAnnIds(imgIds=self.img_ids)
         caps = self.coco_caps.loadAnns(capIds)
         df = pb.DataFrame(caps)
@@ -113,4 +138,15 @@ class COCO_Image_Search():
         self.search_results = df.filter(pb.col('caption').str.contains(pattern))['image_id'].unique().to_list()
 
         return self
+
+class Record:
+    def __init__(self, file="./finder/static/data/record.json"):
+        import json
+
+
+        with open(file) as db:
+            s_db = db.read()
+            days = json.loads(s_db)
+
+        self.days = days
 

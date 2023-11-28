@@ -1,7 +1,44 @@
-<!DOCTYPE html>
-<html>
-    {% include 'head.html' %}
-    <body>
-    {% include 'body.html' %}
-    </body>
-</html>
+<div id="record">
+    <div id="c_panel">
+        <div id="preview">
+            <p>
+            <b>TODO</b><br>
+            Get this page to display a list of things contained in a json file.
+            </p>
+            <p>
+            This is the planner/record page. It records the completed
+            days with their COCO data objects and my drawing. It also
+            stores days that have yet to be completed but for which I
+            have already selected a photo from the dataset.
+            </p>
+            <p>
+            The functionality of the site should allow me to do a search
+            for images in the explorer tab and then add images returned
+            in that search to a list of 'days' that will be displayed here
+            with the images and drawings associated with them.
+            </p>
+            <p>
+            It probably makes the most sense for now to store the info
+            for the days as a json file that can be read into memory as
+            a list of dictionaries. It will contain the day number, the
+            image info if one has been selected, and the drawing if one
+            has been completed.
+            </p>
+            <p>
+            That means there will probably need to be some mechanism for
+            'uploading' the drawing when it has been digitized. The most
+            direct way I can think to do this is just display all images
+            from a folder and allow each to be assigned to a specific day
+            which will then update the json file with their relative
+            path, so that they can be displayed.
+            </p>
+        </div>
+    </div>
+    <div id="result_list">
+        {% if results %}
+            <h3>Results</h3>
+            {{ results | safe }}
+
+        {% endif %}
+    </div>
+</div>

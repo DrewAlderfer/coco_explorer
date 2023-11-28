@@ -66,6 +66,13 @@ a:hover {
     padding: 10px;
 }
 
+#record {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px;
+}
+
 #c_panel {
     display: flex;
     flex-direction: column;
@@ -77,6 +84,7 @@ a:hover {
 }
 
 #explorer,
+#record,
 #c_panel,
 #search_bar,
 #preview,

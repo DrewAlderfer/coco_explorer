@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "coco_explorer"
+name = "coco-explorer"
 version = "0.1.0"
 description = ""
 authors = ["Andrew Alderfer <drew@drewalderfer.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "3.11.3"
+python = "3.11.6"
 polars = "^0.17.6"
 ipython = "^8.12.0"
 ipykernel = "^6.22.0"
@@ -18,7 +18,7 @@ jsonrpcclient = "^4.0.3"
 coco-lib = "^0.1.3"
 flask = "^2.3.2"
 pycocotools = "^2.0.6"
-jupyter-ascending = {path = "/home/drew/code/pypkgs/jupyter_ascending"}
+# jupyter-ascending = {path = "/home/drew/code/pypkgs/jupyter_ascending"}
 
 [tool.poetry.group.utils]
 optional = true
